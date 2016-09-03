@@ -1,0 +1,70 @@
+.setting .md-inline-form{
+    padding: 24px;
+}
+.input-label{
+    color: grey;
+}
+.flex-input, .flex-product-outlet{
+    display: flex;
+}
+.pamount{
+    float: right;
+}
+.flex-input md-input, .flex-input md-checkbox, .flex-product-outlet > div{
+    flex: 1;
+    margin: 5px;
+}
+
+.flex-input md-checkbox{
+    color: gray;
+}
+
+.product-container md-input{
+    width: 80%;    
+}
+
+.action-container{
+    float:right;
+}
+
+.outlet-container md-checkbox{
+    color: gray;
+    display: block;
+    margin: 20px 0px 28px 0px;
+}
+
+.alert-success-cus{
+    position: fixed;
+    top: 12px;
+    right: 30px;
+}
+
+@-webkit-keyframes fadeout{
+    0%{opacity:1;visibility:visible;}
+    99%{opacity:0;}
+    100%{opacity:0;visibility: hidden;}
+}
+.fadeout {
+    -webkit-animation:fadeout 0.5s linear;
+    visibility:hidden;
+}
+@-webkit-keyframes fadein{
+    0%{opacity:0;visibility:visible;}
+    100%{opacity:1;}
+}
+.fadein {
+    -webkit-animation:fadein 0.5s linear;
+}
+.outlet-list, .product-list {
+    height: 450px;
+    overflow-y: scroll;
+}
+
+
+.checkbox > md-checkbox{
+    position: relative;
+    top: 15px;
+}
+.title{
+     color: gray;
+}

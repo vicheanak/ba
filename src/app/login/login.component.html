@@ -1,0 +1,19 @@
+<div class="login" flex="30" layout="column" flex-md="50" flex-xs="100">
+    <md-card>
+        <form #loginForm="ngForm" novalidate>
+            <md-card-title>
+                <md-card-title-text>
+                    <span class="md-headline">Login</span>
+                </md-card-title-text>
+            </md-card-title>
+            <md-card-content>
+                <md-input [(ngModel)]="user.username" name="name" placeholder="Name" style="width: 100%"></md-input>
+                <md-input [(ngModel)]="user.password" type="password" name="password" placeholder="Password" style="width: 100%"></md-input>
+            </md-card-content>
+            <md-card-actions layout="row" layout-align="end center">
+                <span *ngIf="message" class="error-message">{{message}}</span>
+                <button class="md-primary" type="submit" (click)="signin(loginForm)" md-button>Sign In</button>
+            </md-card-actions>
+        </form>
+    </md-card>
+</div>

@@ -1,0 +1,78 @@
+<div class="category">
+    <md-toolbar color="primary">
+        <span>Category</span>
+        <span flex></span>
+    </md-toolbar>
+
+    <!-- Delete -->
+    <md-dialog #delete (onClose)="closePopup($event)">
+        <md-dialog-title>Are you to delete {{category.name}}?</md-dialog-title>
+        <md-dialog-actions ok="OK" cancel="CANCEL"></md-dialog-actions>
+    </md-dialog>
+
+    <!-- Create -->
+    <md-dialog #create (onClose)="closePopup($event)">
+        <form #f="ngForm">
+            <md-input [(ngModel)]="category.name" name="name" placeholder="Name" style="width: 100%"></md-input>
+            <md-input [(ngModel)]="category.promotion" name="promotion" placeholder="Promotion" style="width: 100%"></md-input>
+            <md-checkbox [(ngModel)]="category.star" name="star" class="md-primary" [(checked)]="category.star" aria-label="Star" style="color: gray;">
+                Star
+            </md-checkbox>
+            <md-checkbox name="active" class="md-primary" [(checked)]="category.active" [(ngModel)]="category.active" aria-label="Active" style="color: gray; display: inherit">
+                Active
+            </md-checkbox>
+        </form>
+        <md-dialog-actions>
+            <span flex></span>
+            <button md-button (click)="create.close(false)">
+                <span>Cancel</span>
+            </button>
+            <button md-button class="md-primary" (click)="create.close(true)">
+                <span>Save</span>
+            </button>
+        </md-dialog-actions>
+    </md-dialog>
+
+    <md-card>
+        <md-data-table layout-fill>
+            <thead>
+                <tr>
+                    <th class="md-text-cell">Name</th>
+                    <th class="md-text-cell">Promotion</th>
+                    <th class="md-text-cell">Star</th>
+                    <th class="md-text-cell">Active</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let category of categories">
+                    <td class="md-text-cell">
+                        {{ category.name }}
+                    </td>
+                    <td class="md-text-cell">
+                        {{ category.promotion }}
+                    </td>
+                    <td class="md-text-cell">
+                        <i *ngIf="category.star" md-icon>star</i>
+                    </td>
+                    <td class="md-text-cell">
+                        <md-checkbox disabled="true" name="active" class="md-primary" [(checked)]="category.active" aria-label="Active">
+                        </md-checkbox>
+                    </td>
+                    <td>
+                        <span flex></span>
+                        <button md-button class="md-icon-button md-primary" aria-label="Edit" (click)="showEdit(category)">
+                            <i md-icon>edit mode</i>
+                        </button>
+                        <button md-button class="md-icon-button md-warn" aria-label="Delete" (click)="showDelete(category)">
+                            <i md-icon>delete</i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </md-data-table>
+    </md-card>
+    <button md-fab (click)="showCreate()" class="md-warn add md-fab" aria-label="Create">
+        <i md-icon>add</i>
+    </button>
+</div>

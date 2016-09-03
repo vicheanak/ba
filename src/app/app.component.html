@@ -1,3 +1,27 @@
-<h1>
-  {{title}}
-</h1>
+<div layout="column" style="height:100vh;" class="app">
+    <md-sidenav-layout>
+        <md-sidenav #left *ngIf="isLogin" [opened]="true" mode="side" >
+            <md-toolbar color="primary">
+                <i md-icon class="icon-logo">track_changes</i><span>Seller Program</span>
+                <span flex></span>
+            </md-toolbar>
+            <md-list>
+                <md-list-item md-ink *ngFor="let route of routes; let index = index">
+                    <i md-icon>{{route.icon}}</i>
+                    <a class="link" (click)="linkClicked(route)" [routerLink]="route.link" routerLinkActive="active"  >
+                        {{ route.label }}
+                    </a>
+                </md-list-item>
+                <md-list-item md-ink>
+                    <i md-icon>power_settings_new</i>
+                    <a class="link" (click)="logout($event)" href="#">
+                        Logout
+                    </a>
+                </md-list-item>
+            </md-list>
+        </md-sidenav>
+        <md-content>
+            <router-outlet></router-outlet>
+        </md-content>
+    </md-sidenav-layout>
+</div>

@@ -1,0 +1,64 @@
+<div class="create-sp">
+    <md-toolbar color="primary">
+        <span>{{spTitle}}</span>
+        <span flex></span>
+    </md-toolbar>
+
+    <md-card layout="column" class="md-inline-form">
+        <form #f="ngForm" name="spForm" novalidate>
+            <div class="flex-input">
+                <md-input #name="ngModel" required="true" dividerColor="{{nameMessage ? 'warn' : 'primary'}}" [(ngModel)]="sp.name" name="name" placeholder="Sp Name">
+                    <md-hint align="end" style="bottom: -0.3em; color: red">
+                        <span>{{nameMessage}}</span>
+                    </md-hint>
+                </md-input>
+                <md-input #username="ngModel" required="true" dividerColor="{{usernameMessage ? 'warn' : 'primary'}}" [(ngModel)]="sp.username" name="username" placeholder="Sp Username">
+                    <md-hint align="end" style="bottom: -0.3em; color: red">
+                        <span>{{usernameMessage}}</span>
+                    </md-hint>
+                </md-input>
+                <md-input #password="ngModel" required="true" dividerColor="{{passwordMessage ? 'warn' : 'primary'}}" [(ngModel)]="sp.password" name="password" placeholder="Sp Password">
+                    <md-hint align="end" style="bottom: -0.3em; color: red">
+                        <span>{{passwordMessage}}</span>
+                    </md-hint>
+                </md-input>
+                <div class="checkbox">
+                    <md-checkbox [(ngModel)]="sp.active" name="active" class="md-primary" [(checked)]="sp.checked">
+                        Active
+                    </md-checkbox>
+                </div>
+            </div>
+            <div class="flex-product-outlet">
+                <div class="product-container">
+                    <label class="input-label">Enter Products Amount</label>
+                    <div class="product-list">
+                        <md-input *ngFor="let product of products" [(ngModel)]="product.amount" [name]="'product' + product.id" [placeholder]="product.name"></md-input>
+                    </div>
+                </div>
+                <div class="outlet-container">
+                    <label for="outlet" class="input-label">Select SP Outlets</label>
+                    <div class="outlet-list">
+                        <md-checkbox *ngFor="let outlet of outlets" [(ngModel)]="outlet.checked" [name]="'outlet' + outlet.id" class="md-primary" [(checked)]="outlet.checked" aria-label="Star">
+                            {{outlet.outletName}}
+                        </md-checkbox>
+                    </div>
+                </div>
+            </div>
+            <div class="action-container">
+                <span flex></span>
+                <button md-button (click)="goBack()">
+                    <span>Go Back</span>
+                </button>
+                <button md-button class="md-primary" (click)="save()">
+                    <span>Save</span>
+                </button>
+            </div>
+        </form>
+    </md-card>
+    <alert *ngIf="messageType == 'danger'" [ngClass]="{'fadein': isFaded, 'fadeout': !isFaded}" class="alert-success-cus" type="danger" >
+        {{message}}
+    </alert>
+    <alert *ngIf="messageType == 'success'" [ngClass]="{'fadein': isFaded, 'fadeout': !isFaded}" class="alert-success-cus" type="success" >
+        {{message}}
+    </alert>
+</div>

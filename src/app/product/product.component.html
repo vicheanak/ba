@@ -1,0 +1,137 @@
+<div class="product">
+    <md-toolbar color="primary">
+        <span>Product</span>
+        <span flex></span>
+    </md-toolbar>
+    <!-- Delete -->
+    <md-dialog #delete (onClose)="closePopup($event)">
+        <md-dialog-title>Are you sure to delete {{product.name}}?</md-dialog-title>
+        <md-dialog-actions ok="OK" cancel="CANCEL"></md-dialog-actions>
+    </md-dialog>
+
+    <!-- Create -->
+    <md-dialog #create (onClose)="closePopup($event)">
+        <h2 class="edit-title">{{popuptitle}}</h2>
+        <form #f="ngForm" name="productForm" novalidate>
+            <md-input #inventoryCode="ngModel" required="true" dividerColor="{{inventoryCodeMessage ? 'warn' : 'primary'}}" [(ngModel)]="product.inventoryCode" name="inventoryCode" placeholder="Inventory Code" style="width: 100%">
+                <md-hint align="end" style="bottom: -0.3em; color: red">
+                    <span>{{inventoryCodeMessage}}</span>
+                </md-hint>
+            </md-input>
+            <md-input #name="ngModel" required="true" dividerColor="{{nameMessage ? 'warn' : 'primary'}}" [(ngModel)]="product.name" name="name" placeholder="Name" style="width: 49%">
+                <md-hint align="end" style="bottom: -0.3em; color: red">
+                    <span>{{nameMessage}}</span>
+                </md-hint>
+            </md-input>
+            <md-input #nameKh="ngModel" required="true" dividerColor="{{nameKhMessage ? 'warn' : 'primary'}}" [(ngModel)]="product.nameKh" name="nameKh" placeholder="Name Khmer" style="width: 49%">
+                <md-hint align="end" style="bottom: -0.3em; color: red">
+                    <span>{{nameKhMessage}}</span>
+                </md-hint>
+            </md-input>
+            <md-input #unitKh="ngModel" required="true" dividerColor="{{unitKhMessage ? 'warn' : 'primary'}}" [(ngModel)]="product.unitKh" name="unitKh" placeholder="Unit Khmer" style="width: 49%">
+                <md-hint align="end" style="bottom: -0.3em; color: red">
+                    <span>{{unitKhMessage}}</span>
+                </md-hint>
+            </md-input>
+            <md-input #pieces="ngModel" required="true" dividerColor="{{piecesMessage ? 'warn' : 'primary'}}" [(ngModel)]="product.pieces" name="pieces" placeholder="Pieces in Case" style="width: 49%">
+                <md-hint align="end" style="bottom: -0.3em; color: red">
+                    <span>{{piecesMessage}}</span>
+                </md-hint>
+            </md-input>
+            <md-input [(ngModel)]="product.freeInQty" name="freeInQty" placeholder="Free Quantity in Piece" style="width: 49%"></md-input>
+            <md-input #price="ngModel" [(ngModel)]="product.price" name="price" required="true" dividerColor="{{priceMessage ? 'warn' : 'primary'}}" placeholder="Price (USD)" style="width: 49%">
+                <md-hint align="end" style="bottom: -0.3em; color: red">
+                    <span>{{priceMessage}}</span>
+                </md-hint>
+                <!-- <md-hint [hidden]="price.pristine || price.valid"> -->
+                    <!--     <span [hidden]="price.errors?.required || !price.errors?.price">This doesn't appear to be a valid price address.</span> -->
+                    <!--     <span [hidden]="!price.errors?.required">Price address is required.</span> -->
+                    <!-- </md-hint> -->
+            </md-input>
+            <md-checkbox [(ngModel)]="product.star" name="star" class="md-primary" [(checked)]="product.star" aria-label="Star" style="color: gray; width: 49%">
+                Star
+            </md-checkbox>
+            <md-checkbox name="active" class="md-primary" [(checked)]="product.active" [(ngModel)]="product.active" aria-label="Active" style="color: gray; display: inherit; ">
+                Active
+            </md-checkbox>
+            <md-dialog-actions>
+                <span flex></span>
+                <button md-button (click)="closeDialog(false)">
+                    <span>Cancel</span>
+                </button>
+                <button md-button class="md-primary" (click)="closeDialog(true)">
+                    <span>Save</span>
+                </button>
+                <!-- <button md-button class="md-primary" (click)="create.close(true)"> -->
+                <!--     <span>Save</span> -->
+                <!-- </button> -->
+            </md-dialog-actions>
+        </form>
+    </md-dialog>
+
+    <div class="summary-result" *ngIf="products">
+        <span>Total: {{products.length}}</span>
+    </div>
+    <md-card>
+        <md-data-table layout-fill>
+            <thead>
+                <tr>
+                    <th class="md-text-cell">Inventory Code</th>
+                    <th class="md-text-cell">Name</th>
+                    <th class="md-text-cell">Name Kh</th>
+                    <th class="md-text-cell">Unit</th>
+                    <th class="md-text-cell">Pieces</th>
+                    <th class="md-text-cell">Free Qty(PC)</th>
+                    <th class="md-text-cell">Price</th>
+                    <th class="md-text-cell">Star</th>
+                    <th class="md-text-cell">Active</th>
+                    <th *ngIf="userdata.role == 'admin'"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let product of products">
+                    <td class="md-text-cell">
+                        {{ product.inventoryCode }}
+                    </td>
+                    <td class="md-text-cell">
+                        {{ product.name }}
+                    </td>
+                    <td class="md-text-cell">
+                        {{ product.nameKh }}
+                    </td>
+                    <td class="md-text-cell">
+                        {{ product.unitKh }}
+                    </td>
+                    <td class="md-text-cell">
+                        {{ product.pieces }}
+                    </td>
+                    <td class="md-text-cell">
+                        {{ product.freeInQty }}
+                    </td>
+                    <td class="md-text-cell">
+                        {{ product.price }}
+                    </td>
+                    <td class="md-text-cell">
+                        <i *ngIf="product.star" md-icon>star</i>
+                    </td>
+                    <td class="md-text-cell">
+                        <md-checkbox disabled="true" name="active" class="md-primary" [(checked)]="product.active" aria-label="Active">
+                        </md-checkbox>
+                    </td>
+                    <td *ngIf="userdata.role == 'admin'">
+                        <span flex></span>
+                        <button md-button class="md-icon-button md-primary" aria-label="Edit" (click)="showEdit(product)">
+                            <i md-icon>edit mode</i>
+                        </button>
+                        <!-- <button md-button class="md-icon-button md-warn" aria-label="Delete" (click)="showDelete(product)"> -->
+                        <!--     <i md-icon>delete</i> -->
+                        <!-- </button> -->
+                    </td>
+                </tr>
+            </tbody>
+        </md-data-table>
+    </md-card>
+    <button *ngIf="userdata.role == 'admin'" md-fab (click)="showCreate()" class="md-warn add md-fab" aria-label="Create">
+        <i md-icon>add</i>
+    </button>
+</div>

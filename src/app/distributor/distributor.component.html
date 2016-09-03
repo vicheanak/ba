@@ -1,0 +1,91 @@
+<div class="distributor">
+    <md-toolbar color="primary">
+        <span>Distributor</span>
+        <span flex></span>
+    </md-toolbar>
+    <!-- Delete -->
+    <md-dialog #delete (onClose)="closePopup($event)">
+        <md-dialog-title>Are you sure to delete {{distributor.dtName}}?</md-dialog-title>
+        <md-dialog-actions ok="OK" cancel="CANCEL"></md-dialog-actions>
+    </md-dialog>
+
+    <!-- Create -->
+    <md-dialog #create (onClose)="closePopup($event)">
+        <h2 class="edit-title">{{popuptitle}}</h2>
+        <form #f="ngForm" name="distributorForm" novalidate>
+            <md-input #dtCode="ngModel" required="true" dividerColor="{{dtCodeMessage ? 'warn' : 'primary'}}" [(ngModel)]="distributor.dtCode" name="dtCode" placeholder="Distributor Code" style="width: 100%">
+                <md-hint align="end" style="bottom: -0.3em; color: red">
+                    <span>{{dtCodeMessage}}</span>
+                </md-hint>
+            </md-input>
+            <md-input #dtName="ngModel" required="true" dividerColor="{{dtNameMessage ? 'warn' : 'primary'}}" [(ngModel)]="distributor.dtName" name="dtName" placeholder="Distributor Name" style="width: 100%">
+                <md-hint align="end" style="bottom: -0.3em; color: red">
+                    <span>{{dtNameMessage}}</span>
+                </md-hint>
+            </md-input>
+            <md-input #dtNameKh="ngModel" required="true" dividerColor="{{dtNameKhMessage ? 'warn' : 'primary'}}" [(ngModel)]="distributor.dtNameKh" name="dtNameKh" placeholder="Distributor Name Khmer" style="width: 100%">
+                <md-hint align="end" style="bottom: -0.3em; color: red">
+                    <span>{{dtNameKhMessage}}</span>
+                </md-hint>
+            </md-input>
+            <md-checkbox name="active" class="md-primary" [(checked)]="distributor.active" [(ngModel)]="distributor.active" aria-label="Active" style="color: gray; display: inherit; ">
+                Active
+            </md-checkbox>
+        </form>
+        <md-dialog-actions>
+            <span flex></span>
+            <button md-button (click)="closeDialog(false)">
+                <span>Cancel</span>
+            </button>
+            <button md-button class="md-primary" (click)="closeDialog(true)">
+                <span>Save</span>
+            </button>
+        </md-dialog-actions>
+    </md-dialog>
+
+    <div class="summary-result" *ngIf="distributors">
+        <span>Total: {{distributors.length}}</span>
+    </div>
+    <md-card>
+        <md-data-table layout-fill>
+            <thead>
+                <tr>
+                    <th class="md-text-cell">Distributor Code</th>
+                    <th class="md-text-cell">Distributor Name</th>
+                    <th class="md-text-cell">Distributor Name Khmer</th>
+                    <th class="md-text-cell">Active</th>
+                    <th *ngIf="userdata == 'admin'"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let distributor of distributors">
+                    <td class="md-text-cell">
+                        {{ distributor.dtCode }}
+                    </td>
+                    <td class="md-text-cell">
+                        {{ distributor.dtName }}
+                    </td>
+                    <td class="md-text-cell">
+                        {{ distributor.dtNameKh }}
+                    </td>
+                    <td class="md-text-cell">
+                        <md-checkbox disabled="true" name="active" class="md-primary" [(checked)]="distributor.active" aria-label="Active">
+                        </md-checkbox>
+                    </td>
+                    <td *ngIf="userdata.role == 'admin'">
+                        <span flex></span>
+                        <button md-button class="md-icon-button md-primary" aria-label="Edit" (click)="showEdit(distributor)">
+                            <i md-icon>edit mode</i>
+                        </button>
+                        <!-- <button md-button class="md-icon-button md-warn" aria-label="Delete" (click)="showDelete(distributor)"> -->
+                        <!--     <i md-icon>delete</i> -->
+                        <!-- </button> -->
+                    </td>
+                </tr>
+            </tbody>
+        </md-data-table>
+    </md-card>
+    <button *ngIf="userdata.role == 'admin'" md-fab (click)="showCreate()" class="md-warn add md-fab" aria-label="Create">
+        <i md-icon>add</i>
+    </button>
+</div>

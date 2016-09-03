@@ -1,0 +1,10 @@
+.login{
+    margin: auto;
+    display: block;
+    position: relative;
+    top: 100px;
+}
+
+.error-message{
+    color: red;
+}

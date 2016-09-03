@@ -1,0 +1,14 @@
+.distributor .add {
+  position: fixed;
+  top: 30px;
+  right: 30px;
+}
+h2.edit-title {
+    margin: 0px 0px 15px 0px;
+}
+.summary-result{
+    position: relative;
+    left: 10px;
+    top: 3px;
+    font-style: italic;
+}

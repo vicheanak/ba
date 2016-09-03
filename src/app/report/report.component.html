@@ -1,0 +1,128 @@
+<div class="report">
+    <md-toolbar color="primary">
+        <span>Report</span>
+        <span flex></span>
+    </md-toolbar>
+    <div class="row padding">
+        <div class="col-md-4">
+            <label>Distributors</label>
+            <ng-select [data]="value"
+                [multiple]="true"
+                [items]="distributorItems"
+                (data)="refreshDistributors($event)"
+                placeholder="No distributor selected">
+            </ng-select>
+        </div>
+        <div class="col-md-4">
+            <label>SP</label>
+            <ng-select [data]="value"
+                [multiple]="true"
+                [items]="spItems"
+                (data)="refreshBas($event)"
+                placeholder="No SP selected">
+            </ng-select>
+        </div>
+        <div class="col-md-4">
+            <label>Products</label>
+            <ng-select [data]="value"
+                [multiple]="true"
+                [items]="productItems"
+                (data)="refreshProducts($event)"
+                placeholder="No Products selected">
+            </ng-select>
+        </div>
+    </div>
+
+    <div class="row padding">
+        <div class="col-md-10">
+            <label>Date Range</label>
+            <div class="btn-group">
+                <button type="button" class="glyphicon glyphicon-calendar btn btn-sm btn-default btn-secondary" (click)="toggleStartDatePicker()"></button>
+                <input type="text" ngControl="start_dt" [ngModel]="start_dt | date:'dd/MM/yyyy'" (click)="toggleStartDatePicker()" class="btn btn-sm btn-default btn-secondary">
+            </div>
+            <div *ngIf="showStartDatePicker" style="position: absolute; z-index:10; min-height:290px;">
+                <datepicker  [(ngModel)]="start_dt" [minDate]="minDate" [showWeeks]="true">
+                </datepicker>
+            </div>
+
+            <div class="btn-group">
+                <button type="button" class="glyphicon glyphicon-calendar btn btn-sm btn-default btn-secondary" (click)="toggleEndDatePicker()"></button>
+                <input type="text" ngControl="end_dt" [ngModel]="end_dt | date:'dd/MM/yyyy'" (click)="toggleEndDatePicker()" class="btn btn-sm btn-default btn-secondary">
+            </div>
+            <div *ngIf="showEndDatePicker" style="position: absolute; z-index:10; min-height:290px;">
+                <datepicker [(ngModel)]="end_dt" [minDate]="minDate" [showWeeks]="true"></datepicker>
+            </div>
+            <button md-button class="md-primary" (click)="onSubmit('1', 'page')">
+                <span>Submit</span>
+            </button>
+        </div>
+        <div class="col-md-2 export-excell">
+            <button md-button class="md-primary" (click)="export()">
+                <span>Export</span>
+            </button>
+        </div>
+    </div>
+
+    <div class="summary-result" *ngIf="orders.results">
+        <span>Results: {{totalItems}}, Page: {{currentPage}} out of {{totalPages}}</span>
+    </div>
+    <md-card>
+        <md-data-table layout-fill>
+            <thead>
+                <tr>
+                    <th class="md-text-cell">DT Code</th>
+                    <th class="md-text-cell">DT Name</th>
+                    <th class="md-text-cell">Outlet Code</th>
+                    <th class="md-text-cell">Outlet Name</th>
+                    <th class="md-text-cell">Product Name</th>
+                    <th class="md-text-cell">SP Name</th>
+                    <th class="md-text-cell">Free Qty CS</th>
+                    <th class="md-text-cell">Free Qty PC</th>
+                    <th class="md-text-cell">Sale Qty</th>
+                    <th class="md-text-cell">Sale Price</th>
+                    <th class="md-text-cell">Order Date</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let order of orders.results">
+                    <td class="md-text-cell">
+                        {{ order.Outlet.Distributor.dtCode }}
+                    </td>
+                    <td class="md-text-cell">
+                        {{ order.Outlet.Distributor.dtName }}
+                    </td>
+                    <td class="md-text-cell">
+                        {{ order.Outlet.outletCode }}
+                    </td>
+                    <td class="md-text-cell">
+                        {{ order.Outlet.outletName }}
+                    </td>
+                    <td class="md-text-cell">
+                        {{ order.Product.name }}
+                    </td>
+                    <td class="md-text-cell">
+                        {{ order.User.name }}
+                    </td>
+                    <td class="md-text-cell">
+                        {{ (order.amount / order.Product.freeInQty) / order.Product.pieces | round:true }}
+                    </td>
+                    <td class="md-text-cell">
+                        {{ order.amount / order.Product.freeInQty | round:true }}
+                    </td>
+                    <td class="md-text-cell">
+                        {{ order.amount }}
+                    </td>
+                    <td class="md-text-cell">
+                        {{ order.amount * order.Product.price | round:true }}
+                    </td>
+                    <td class="md-text-cell">
+                        {{ order.orderDate }}
+                    </td>
+                </tr>
+            </tbody>
+        </md-data-table>
+        <pagination *ngIf="orders.results" class="pagination" [totalItems]="totalItems" [(ngModel)]="currentPage" [maxSize]="maxSize" [boundaryLinks]="true" [rotate]="false" (click)="pageChanged()"></pagination>
+    </md-card>
+
+</div>

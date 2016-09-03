@@ -1,0 +1,45 @@
+<div class="sp">
+    <md-toolbar color="primary">
+        <span>SP</span>
+        <span flex></span>
+    </md-toolbar>
+
+    <div class="summary-result" *ngIf="sps">
+        <span>Total: {{sps.length}}</span>
+    </div>
+    <md-card>
+        <md-data-table layout-fill>
+            <thead>
+                <tr>
+                    <th class="md-text-cell">Name</th>
+                    <th class="md-text-cell">Username</th>
+                    <th class="md-text-cell">Active</th>
+                    <th *ngIf="userdata.role == 'admin'"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let sp of sps">
+                    <td class="md-text-cell">
+                        {{ sp.name }}
+                    </td>
+                    <td class="md-text-cell">
+                        {{ sp.username }}
+                    </td>
+                    <td class="md-text-cell">
+                        <md-checkbox disabled="true" name="active" class="md-primary" [(checked)]="sp.active" aria-label="Active">
+                        </md-checkbox>
+                    </td>
+                    <td *ngIf="userdata.role == 'admin'">
+                        <span flex></span>
+                        <button md-button class="md-icon-button md-primary" aria-label="Edit" (click)="edit(sp)">
+                            <i md-icon>edit mode</i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </md-data-table>
+    </md-card>
+    <button *ngIf="userdata.role == 'admin'" md-fab (click)="create()" class="md-warn add md-fab" aria-label="Create">
+        <i md-icon>add</i>
+    </button>
+</div>

@@ -1,0 +1,23 @@
+.outlet .add {
+  position: fixed;
+  top: 30px;
+  right: 30px;
+}
+.input-label{
+    color: grey;
+}
+h2.edit-title {
+    margin: 0px 0px 15px 0px;
+}
+.summary-result{
+    position: relative;
+    left: 10px;
+    top: 3px;
+    font-style: italic;
+}
+
+.hint-message > span {
+    position: absolute;
+    right: 24px;
+    font-size: 11px;
+}

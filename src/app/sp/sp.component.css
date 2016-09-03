@@ -1,0 +1,11 @@
+.sp .add {
+  position: fixed;
+  top: 30px;
+  right: 30px;
+}
+.summary-result{
+    position: relative;
+    left: 10px;
+    top: 3px;
+    font-style: italic;
+}

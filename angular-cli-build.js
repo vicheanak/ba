@@ -15,7 +15,16 @@ module.exports = function(defaults) {
       'es6-shim/es6-shim.js',
       'reflect-metadata/**/*.+(ts|js|js.map)',
       'rxjs/**/*.+(js|js.map)',
-      '@angular/**/*.+(js|js.map)'
+      '@angular/**/*.+(js|js.map)',
+      'moment/moment.js',
+      '@angular2-material/**/*.js',
+      'ng2-bootstrap/**/*.js',
+      'underscore/underscore.js',
+      'ng2-material/**/*',
+      'angular2-localstorage/**/*.+(ts|js|js.map)',
+      'ng2-select/**/*',
+      'ng2-datepicker/**/*',
+      'json2csv/**/*'
     ]
   });
 };

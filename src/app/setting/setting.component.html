@@ -1,0 +1,36 @@
+<div class="setting">
+    <md-toolbar color="primary">
+        <span>Setting</span>
+        <span flex></span>
+    </md-toolbar>
+
+    <md-card layout="column" class="md-inline-form">
+        <form #f="ngForm" name="spForm" novalidate>
+            <h4 class="title">Change Password</h4>
+            <div class="flex-input">
+                <md-input #oldPassword="ngModel" required="true" dividerColor="{{oldPasswordMessage ? 'warn' : 'primary'}}" [(ngModel)]="modelOldPassword" name="oldPassword" placeholder="Old Password" type="password">
+                    <md-hint align="end" style="bottom: -0.3em; color: red">
+                        <span>{{oldPasswordMessage}}</span>
+                    </md-hint>
+                </md-input>
+                <md-input #newPassword="ngModel" required="true" dividerColor="{{newPasswordMessage ? 'warn' : 'primary'}}" [(ngModel)]="modelNewPassword" name="newPassword" placeholder="New Password" type="password">
+                    <md-hint align="end" style="bottom: -0.3em; color: red">
+                        <span>{{newPasswordMessage}}</span>
+                    </md-hint>
+                </md-input>
+            </div>
+            <div class="action-container">
+                <span flex></span>
+                <button md-button class="md-primary" (click)="save()">
+                    <span>Save</span>
+                </button>
+            </div>
+        </form>
+    </md-card>
+    <alert *ngIf="messageType == 'danger'" [ngClass]="{'fadein': isFaded, 'fadeout': !isFaded}" class="alert-success-cus" type="danger" >
+        {{message}}
+    </alert>
+    <alert *ngIf="messageType == 'success'" [ngClass]="{'fadein': isFaded, 'fadeout': !isFaded}" class="alert-success-cus" type="success" >
+        {{message}}
+    </alert>
+</div>

@@ -1,0 +1,102 @@
+<div class="outlet">
+    <md-toolbar color="primary">
+        <span>Outlet</span>
+        <span flex></span>
+    </md-toolbar>
+    <!-- Delete -->
+    <md-dialog #delete (onClose)="closePopup($event)">
+        <md-dialog-title>Are you sure to delete {{outlet.outletName}}?</md-dialog-title>
+        <md-dialog-actions ok="OK" cancel="CANCEL"></md-dialog-actions>
+    </md-dialog>
+
+    <!-- Create -->
+    <md-dialog #create (onClose)="closePopup($event)">
+        <h2 class="edit-title">{{popuptitle}}</h2>
+        <form #f="ngForm" name="outletForm">
+            <label for="distributor" class="input-label">Select Distributor</label>
+            <select class="form-control" id="distributor" [(ngModel)]="distributor" name="distributor">
+                <option *ngFor="let d of distributors" [value]="d.id">{{d.dtName}}</option>
+            </select>
+                <md-hint align="end" class="hint-message" style="bottom: -0.3em; color: red">
+                    <span>{{distributorMessage}}</span>
+                </md-hint>
+            <md-input #outletCode="ngModel" required="true" dividerColor="{{outletCodeMessage ? 'warn' : 'primary'}}" [(ngModel)]="outlet.outletCode" name="outletCode" placeholder="Outlet Code" style="width: 100%">
+                <md-hint align="end" style="bottom: -0.3em; color: red">
+                    <span>{{outletCodeMessage}}</span>
+                </md-hint>
+            </md-input>
+            <md-input #outletName="ngModel" required="true" dividerColor="{{outletNameMessage ? 'warn' : 'primary'}}" [(ngModel)]="outlet.outletName" name="outletName" placeholder="Outlet Name" style="width: 100%">
+                <md-hint align="end" style="bottom: -0.3em; color: red">
+                    <span>{{outletNameMessage}}</span>
+                </md-hint>
+            </md-input>
+            <md-input #outletNameKh="ngModel" required="true" dividerColor="{{outletNameKhMessage ? 'warn' : 'primary'}}" [(ngModel)]="outlet.outletNameKh" name="outletNameKh" placeholder="Outlet Name Khmer" style="width: 100%">
+                <md-hint align="end" style="bottom: -0.3em; color: red">
+                    <span>{{outletNameKhMessage}}</span>
+                </md-hint>
+            </md-input>
+            <md-checkbox name="active" class="md-primary" [(checked)]="outlet.active" [(ngModel)]="outlet.active" aria-label="Active" style="color: gray; display: inherit; ">
+                Active
+            </md-checkbox>
+        </form>
+        <md-dialog-actions>
+            <span flex></span>
+            <button md-button (click)="closeDialog(false)">
+                <span>Cancel</span>
+            </button>
+            <button md-button class="md-primary" (click)="closeDialog(true)">
+                <span>Save</span>
+            </button>
+        </md-dialog-actions>
+    </md-dialog>
+
+    <div class="summary-result" *ngIf="outlets">
+        <span>Total: {{outlets.length}}</span>
+    </div>
+    <md-card>
+        <md-data-table layout-fill>
+            <thead>
+                <tr>
+                    <th class="md-text-cell">Outlet Code</th>
+                    <th class="md-text-cell">Outlet Name</th>
+                    <th class="md-text-cell">Outlet Name Khmer</th>
+                    <th class="md-text-cell">Distributor</th>
+                    <th class="md-text-cell">Active</th>
+                    <th *ngIf="userdata.role == 'admin'"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let outlet of outlets">
+                    <td class="md-text-cell">
+                        {{ outlet.outletCode }}
+                    </td>
+                    <td class="md-text-cell">
+                        {{ outlet.outletName }}
+                    </td>
+                    <td class="md-text-cell">
+                        {{ outlet.outletNameKh }}
+                    </td>
+                    <td class="md-text-cell" *ngIf="outlet.Distributor">
+                        {{ outlet.Distributor.dtName }}
+                    </td>
+                    <td class="md-text-cell">
+                        <md-checkbox disabled="true" name="active" class="md-primary" [(checked)]="outlet.active" aria-label="Active">
+                        </md-checkbox>
+                    </td>
+                    <td *ngIf="userdata.role == 'admin'">
+                        <span flex></span>
+                        <button md-button class="md-icon-button md-primary" aria-label="Edit" (click)="showEdit(outlet)">
+                            <i md-icon>edit mode</i>
+                        </button>
+                        <!-- <button md-button class="md-icon-button md-warn" aria-label="Delete" (click)="showDelete(outlet)"> -->
+                        <!--     <i md-icon>delete</i> -->
+                        <!-- </button> -->
+                    </td>
+                </tr>
+            </tbody>
+        </md-data-table>
+    </md-card>
+    <button *ngIf="userdata.role == 'admin'" md-fab (click)="showCreate()" class="md-warn add md-fab" aria-label="Create">
+        <i md-icon>add</i>
+    </button>
+</div>

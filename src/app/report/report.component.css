@@ -1,0 +1,32 @@
+.report .padding{
+    padding: 20px;
+}
+
+.export-excell{
+    position: relative;
+}
+
+.export-excell > button{
+    position: absolute;
+    right: 0px;
+}
+
+label {
+    color: gray;
+}
+
+.pagination{
+    margin: auto;
+}
+
+.summary-result{
+    position: relative;
+}
+
+.summary-result > span{
+    position: absolute;
+    left: 10px;
+    top: -20px;
+    font-style: italic;
+    color: gray;
+}
