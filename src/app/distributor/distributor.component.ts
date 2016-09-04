@@ -44,7 +44,6 @@ export class DistributorComponent implements OnInit {
             switch (this.state) {
                 case 'create': 
                     this.distributorService.insert(this.distributor).then(distributor => {
-                        console.log('distributor', distributor);
                         this.distributors.push(distributor);
                     });
                     break;

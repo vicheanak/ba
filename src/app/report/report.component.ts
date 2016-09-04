@@ -114,7 +114,6 @@ export class ReportComponent implements OnInit {
     }
 
     onSubmit(currentPage, queryType){
-        console.log('how many times called');
         this.showEndDatePicker = false;
         this.showStartDatePicker = false;
         var query = {
@@ -232,7 +231,6 @@ export class ReportComponent implements OnInit {
 
 
     pageChanged() {
-        console.log(this.currentPage);
         this.onSubmit(this.currentPage, 'page');
     };
 }

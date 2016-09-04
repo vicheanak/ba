@@ -52,7 +52,6 @@ export class CategoryComponent implements OnInit {
                         star: this.category.star,
                         active: this.category.active
                     });
-                    console.log(this.categories);
                     break;
                 case 'edit':
 

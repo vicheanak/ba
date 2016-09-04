@@ -97,7 +97,6 @@ export class OutletComponent implements OnInit {
     }
 
     closePopup(value: boolean){
-        console.log('close');
         if (value){
             switch (this.state) {
                 case 'create': 
@@ -161,7 +160,6 @@ export class OutletComponent implements OnInit {
         this.distributorService.getAll().then((distributors) => {
             this.distributors = distributors;
             var dt =  _.findWhere(this.distributors, {'id': 1});
-            console.log('dt', dt);
         });
     }
 
@@ -171,7 +169,6 @@ export class OutletComponent implements OnInit {
 
     remote(){
         // this.selectedDistributor = 1;
-        // console.log('Distributor', this.selectedDistributor);
     }
 
 }

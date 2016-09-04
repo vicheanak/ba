@@ -72,7 +72,6 @@ var OutletComponent = (function () {
             else {
                 _this.outletService.getAll().then(function (outlets) {
                     _this.outlets = outlets;
-                    console.log(outlets);
                 });
             }
         });

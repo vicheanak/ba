@@ -29,7 +29,6 @@ export class LoginComponent implements OnInit {
       this.message = '';
       this.auth.login(this.user).then(data => {
           this.data = data;
-           console.log(this.data);
            if (!this.data.err){
                this.router.navigate(['/report']);
            }

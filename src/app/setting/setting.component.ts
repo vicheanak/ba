@@ -71,7 +71,6 @@ export class SettingComponent implements OnInit {
                 if (!this.res.success){
                     this.oldPasswordMessage = this.res.msg; 
                 }
-                console.log('this res', res);
             });
         }
     }

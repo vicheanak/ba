@@ -21,7 +21,6 @@ var AuthenticationService = (function () {
     AuthenticationService.prototype.logout = function () {
         var _this = this;
         return new Promise(function (resolve) {
-            console.log('logout');
             _this.userdata = '';
             // this.storage.remove(this.HAS_LOGGED_IN);
             // this.storage.remove('userdata').then( data => {

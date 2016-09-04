@@ -162,7 +162,6 @@ export class CreateSpComponent implements OnInit {
             }
             else{
                 this.spService.insert(user).then((spId) => {
-                    console.log('spId', spId);
                     this.res = spId;
                     if (this.res.errors){
                         this.messageType = 'danger';

@@ -76,7 +76,6 @@ export class AuthenticationService {
                 .subscribe(data => {
                     this.data = data;
                     if (!this.data.err){
-                        console.log('true');
                         this.userdata = data.json();
                         this.HAS_LOGGED_IN = true;
                     }
