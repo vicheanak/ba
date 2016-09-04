@@ -111,10 +111,8 @@ export class ViewerComponent implements OnInit {
                     });
                     break;
                 case 'edit':
-                    console.log('viewer before edit', this.viewer);
                     this.viewerService.update(this.viewer).then(viewer => {
                         this.response = viewer;
-                        console.log(this.response);
                         if (this.response.error){
                             for (var v = 0; v < this.viewers.length; v ++){
                                 if (this.viewers[v].id == this.response.data.id){
