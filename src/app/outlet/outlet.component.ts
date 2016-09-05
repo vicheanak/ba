@@ -59,7 +59,7 @@ export class OutletComponent implements OnInit {
                 this.distributorMessage = '';
             }
 
-            if (!this.outlet.outletCode){
+            if (!this.outlet.outletCode.trim()){
                 this.outletCodeMessage = 'Outlet code must be filled';
                 this.isValid = false;
             }
@@ -67,7 +67,7 @@ export class OutletComponent implements OnInit {
                 this.outletCodeMessage = '';
             }
 
-            if (!this.outlet.outletName){
+            if (!this.outlet.outletName.trim()){
                 this.outletNameMessage = 'Outlet Name must be filled';
                 this.isValid = false;
             }
@@ -75,7 +75,7 @@ export class OutletComponent implements OnInit {
                 this.outletNameMessage = '';
             }
 
-            if (!this.outlet.outletNameKh){
+            if (!this.outlet.outletNameKh.trim()){
                 this.outletNameKhMessage = 'Outlet Name in Khmer must be filled';
                 this.isValid = false;
             }

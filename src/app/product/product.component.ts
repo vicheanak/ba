@@ -55,7 +55,7 @@ export class ProductComponent implements OnInit {
                 this.inventoryCodeMessage = '';
             }
 
-            if (!this.product.name){
+            if (!this.product.name.trim()){
                 this.nameMessage = 'Name must be filled';
                 this.isValid = false;
             }
@@ -63,7 +63,7 @@ export class ProductComponent implements OnInit {
                 this.nameMessage = '';
             }
 
-            if (!this.product.nameKh){
+            if (!this.product.nameKh.trim()){
                 this.nameKhMessage = 'Name in Khmer must be filled';
                 this.isValid = false;
             }
@@ -71,7 +71,7 @@ export class ProductComponent implements OnInit {
                 this.nameKhMessage = '';
             }
 
-            if (!this.product.unitKh){
+            if (!this.product.unitKh.trim()){
                 this.unitKhMessage = 'Unit in Khmer must be filled';
                 this.isValid = false;
             }
@@ -79,7 +79,7 @@ export class ProductComponent implements OnInit {
                 this.unitKhMessage = '';
             }
 
-            if (isNaN(+this.product.pieces)){
+            if (isNaN(+this.product.pieces.trim())){
                 this.piecesMessage = 'Piece must be number';
                 this.isValid = false;
             }
@@ -93,17 +93,17 @@ export class ProductComponent implements OnInit {
                 this.piecesMessage = '';
             }
 
-            if (isNaN(+this.product.price)){
+            if (isNaN(+this.product.price.trim())){
                 this.priceMessage = 'Price must be number';
                 this.isValid = false;
             }
 
-            if (!this.product.price){
+            if (!this.product.price.trim()){
                 this.priceMessage = 'Price must be filled';
                 this.isValid = false;
             }
 
-            if (this.product.price && !isNaN(+this.product.price)){
+            if (this.product.price.trim() && !isNaN(+this.product.price.trim())){
                 this.priceMessage = '';
             }
 

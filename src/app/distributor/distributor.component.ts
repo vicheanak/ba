@@ -92,7 +92,8 @@ export class DistributorComponent implements OnInit {
     closeDialog(isSubmit: boolean){
         if (isSubmit){
             this.isValid = true;
-            if (!this.distributor.dtCode){
+            
+            if (!this.distributor.dtCode.trim()){
                 this.dtCodeMessage = 'Distributor code must be filled';
                 this.isValid = false;
             }
@@ -100,7 +101,7 @@ export class DistributorComponent implements OnInit {
                 this.dtCodeMessage = '';
             }
 
-            if (!this.distributor.dtName){
+            if (!this.distributor.dtName.trim()){
                 this.dtNameMessage = 'Distributor Name must be filled';
                 this.isValid = false;
             }
@@ -108,7 +109,7 @@ export class DistributorComponent implements OnInit {
                 this.dtNameMessage = '';
             }
 
-            if (!this.distributor.dtNameKh){
+            if (!this.distributor.dtNameKh.trim()){
                 this.dtNameKhMessage = 'Distributor Name in Khmer must be filled';
                 this.isValid = false;
             }

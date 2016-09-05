@@ -99,7 +99,7 @@ export class ViewerComponent implements OnInit {
                     this.viewerService.insert(this.viewer).then(viewer => {
                         this.response = viewer;
                         if (this.response.errors){
-                            this.message = this.response.errors[0].message;
+                            this.message = 'Requested username is already existed';
                             this.isFaded = true;
                             setTimeout(() => {
                                 this.isFaded = false;
@@ -119,7 +119,7 @@ export class ViewerComponent implements OnInit {
                                     this.viewers[v] = this.response.data;
                                 }
                             }
-                            this.message = this.response.error.errors[0].message;
+                            this.message = 'Requested username is already existed';
                             this.isFaded = true;
                             setTimeout(() => {
                                 this.isFaded = false;

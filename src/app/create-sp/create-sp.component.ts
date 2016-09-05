@@ -111,7 +111,7 @@ export class CreateSpComponent implements OnInit {
 
     isValid(){
         var isValid = true;
-        if (!this.sp.name){
+        if (!this.sp.name.trim()){
             this.nameMessage = 'Name must be filled';
             isValid = false;
         }
@@ -119,7 +119,7 @@ export class CreateSpComponent implements OnInit {
             this.nameMessage = '';
         }
 
-        if (!this.sp.username){
+        if (!this.sp.username.trim()){
             this.usernameMessage = 'Username must be filled';
             isValid = false;
         }
@@ -127,7 +127,7 @@ export class CreateSpComponent implements OnInit {
             this.usernameMessage = '';
         }
 
-        if (!this.sp.password){
+        if (!this.sp.password.trim()){
             if (this.saveState == 'create'){
                 this.passwordMessage = 'Password must be filled';
                 isValid = false;
@@ -147,11 +147,11 @@ export class CreateSpComponent implements OnInit {
                     this.res = res;
                     if (this.res.error){
                         this.messageType = 'danger';
-                        this.message = this.res.error.errors[0].message;
+                        this.message = 'Requested username is already existed';
                     }
                     else{
                         this.messageType = 'success';
-                        this.message = 'SP successfully updated.';
+                        this.message = 'SP is successfully updated.';
                     }
                     this.isFaded = true;
                     this.isSaved = true;
@@ -165,12 +165,12 @@ export class CreateSpComponent implements OnInit {
                     this.res = spId;
                     if (this.res.errors){
                         this.messageType = 'danger';
-                        this.message = this.res.errors[0].message;
+                        this.message = 'Requested username is already existed';
                     }
                     else{
                         this.sp['id'] = spId;
                         this.messageType = 'success';
-                        this.message = 'SP successfully inserted.';
+                        this.message = 'SP is successfully created.';
                         this.saveState = 'edit';
                     }
                     this.isSaved = true;
