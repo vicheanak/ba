@@ -238,7 +238,7 @@ export class ReportComponent implements OnInit {
         var csvURL = window.URL.createObjectURL(csvData);
         var tempLink = document.createElement('a');
         tempLink.href = csvURL;
-        tempLink.setAttribute('download', 'ActiveEvent_data.csv');
+        tempLink.setAttribute('download', 'UniBook.csv');
         tempLink.click();
 
         // var blob = new Blob([data], { type: 'text/txt' });
