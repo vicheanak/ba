@@ -212,7 +212,7 @@ export class ReportComponent implements OnInit {
         for (var i = 0; i < array.length; i++) {
             var line = '';
             for (var index in array[i]) {
-                if (line != '') line += ';'
+                if (line != '') line += ','
                     line += array[i][index];
             }
             str += line + '\r\n';
