@@ -221,9 +221,29 @@ export class ReportComponent implements OnInit {
     }
 
     download(data){
-        var blob = new Blob([data], { type: 'text/txt' });
-        var url= window.URL.createObjectURL(blob);
-        window.open(url);
+        // var blob = new Blob([data]);
+        // if (window.navigator.msSaveOrOpenBlob)  // IE hack; see http://msdn.microsoft.com/en-us/library/ie/hh779016.aspx
+        //     window.navigator.msSaveBlob(blob, "filename.csv");
+        // else
+        // {
+        //     var a = window.document.createElement("a");
+        //     a.href = window.URL.createObjectURL(blob, {type: "text/plain"});
+        //     a.download = "filename.csv";
+        //     document.body.appendChild(a);
+        //     a.click();  // IE: "Access is denied"; see: https://connect.microsoft.com/IE/feedback/details/797361/ie-10-treats-blob-url-as-cross-origin-and-denies-access
+        //     document.body.removeChild(a);
+        // }
+
+        var csvData = new Blob([data], {type: 'text/csv;charset=utf-8;'});
+        var csvURL = window.URL.createObjectURL(csvData);
+        var tempLink = document.createElement('a');
+        tempLink.href = csvURL;
+        tempLink.setAttribute('download', 'ActiveEvent_data.csv');
+        tempLink.click();
+
+        // var blob = new Blob([data], { type: 'text/txt' });
+        // var url= window.URL.createObjectURL(blob);
+        // window.open(url);
     }
 
 
