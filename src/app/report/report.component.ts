@@ -178,8 +178,7 @@ export class ReportComponent implements OnInit {
              freeQtyPc: 'Free Qty Pc',
              saleQty: 'Sale Qty',
              salePrice: 'Sale Price',
-             orderDate: 'Order Date',
-             orderNo: 'Order No'
+             orderDate: 'Order Date'
              }];
              for (var r = 0; r < this.results.length; r ++){
                  csvResults.push({
@@ -189,12 +188,11 @@ export class ReportComponent implements OnInit {
                      outletName: this.results[r].Outlet.outletName + '',
                      productName: this.results[r].Product.name + '',
                      spName: this.results[r].User.name + '',
-                     freeQtyCs: (this.results[r].amount / this.results[r].Product.freeInQty) / this.results[r].Product.pieces + '',
-                     freeQtyPc: (this.results[r].amount / this.results[r].Product.freeInQty) + '',
+                     freeQtyCs: Math.round((this.results[r].amount / this.results[r].Product.freeInQty) / this.results[r].Product.pieces * 100) / 100 + '',
+                     freeQtyPc: Math.round((this.results[r].amount / this.results[r].Product.freeInQty) * 100) / 100 + '',
                      saleQty: this.results[r].amount + '',
                      salePrice: this.results[r].amount * this.results[r].Product.price + '',
-                     orderDate: moment.utc(this.results[r].orderDate).format('MM/DD/YYYY'),
-                     orderNo: this.results[r].orderDate + ''
+                     orderDate: moment.utc(this.results[r].orderDate).format('MM/DD/YYYY')
                  })
              }
              moment(this.start_dt).format('YYYY-MM-DD');
