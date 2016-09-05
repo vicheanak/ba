@@ -167,23 +167,7 @@ export class ReportComponent implements OnInit {
         }
          this.orderService.getAll(query).then(orders => {
              this.results = orders['results'];
-             // sep=;
-
              var csvResults = [{
-             dtCode: 'sep=,',
-             dtName: '',
-             outletCode: '',
-             outletName: '',
-             productName: '',
-             spName: '',
-             freeQtyCs: '',
-             freeQtyPc: '',
-             saleQty: '',
-             salePrice: '',
-             orderDate: ''
-             }];
-
-             csvResults.push({
              dtCode: 'Dt Code',
              dtName: 'Dt Name',
              outletCode: 'Outlet Code',
@@ -195,7 +179,7 @@ export class ReportComponent implements OnInit {
              saleQty: 'Sale Qty',
              salePrice: 'Sale Price',
              orderDate: 'Order Date'
-             });
+             }];
              for (var r = 0; r < this.results.length; r ++){
                  csvResults.push({
                      dtCode: this.results[r].Outlet ? this.results[r].Outlet.Distributor.dtCode + '' : '5024',
@@ -228,7 +212,7 @@ export class ReportComponent implements OnInit {
         for (var i = 0; i < array.length; i++) {
             var line = '';
             for (var index in array[i]) {
-                if (line != '') line += ','
+                if (line != '') line += ';'
                     line += array[i][index];
             }
             str += line + '\r\n';
@@ -237,7 +221,7 @@ export class ReportComponent implements OnInit {
     }
 
     download(data){
-        var blob = new Blob([data], { type: 'text/csv' });
+        var blob = new Blob([data], { type: 'text/txt' });
         var url= window.URL.createObjectURL(blob);
         window.open(url);
     }
