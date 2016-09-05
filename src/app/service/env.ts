@@ -5,8 +5,8 @@ import 'rxjs/add/operator/map';
 export class Env {
     host: String;
     constructor() {
-        this.host = 'https://api.unibookkh.com';
-        // this.host = 'http://localhost:3000';
+        // this.host = 'https://api.unibookkh.com';
+        this.host = 'http://localhost:3000';
     }
     getHost(){
         return this.host;

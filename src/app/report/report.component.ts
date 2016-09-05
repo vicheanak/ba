@@ -182,8 +182,8 @@ export class ReportComponent implements OnInit {
              }];
              for (var r = 0; r < this.results.length; r ++){
                  csvResults.push({
-                     dtCode: this.results[r].Outlet.Distributor.dtCode + '',
-                     dtName: this.results[r].Outlet.Distributor.dtName + '',
+                     dtCode: this.results[r].Outlet.Distributor.dtCode ? this.results[r].Outlet + '' : '',
+                     dtName: this.results[r].Outlet.Distributor.dtName ? this.results[r].Outlet.Distributor.dtName + '' : this.results[r].Outlet + '',
                      outletCode: this.results[r].Outlet.outletCode + '',
                      outletName: this.results[r].Outlet.outletName + '',
                      productName: this.results[r].Product.name + '',
