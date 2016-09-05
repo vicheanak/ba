@@ -111,7 +111,7 @@ export class CreateSpComponent implements OnInit {
 
     isValid(){
         var isValid = true;
-        if (!this.sp.name.trim()){
+        if (!this.sp.name){
             this.nameMessage = 'Name must be filled';
             isValid = false;
         }
@@ -119,7 +119,7 @@ export class CreateSpComponent implements OnInit {
             this.nameMessage = '';
         }
 
-        if (!this.sp.username.trim()){
+        if (!this.sp.username){
             this.usernameMessage = 'Username must be filled';
             isValid = false;
         }
@@ -127,7 +127,7 @@ export class CreateSpComponent implements OnInit {
             this.usernameMessage = '';
         }
 
-        if (!this.sp.password.trim()){
+        if (!this.sp.password){
             if (this.saveState == 'create'){
                 this.passwordMessage = 'Password must be filled';
                 isValid = false;
