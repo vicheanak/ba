@@ -87,10 +87,10 @@
             <tbody>
                 <tr *ngFor="let order of orders.results">
                     <td class="md-text-cell">
-                        {{ order.Outlet.Distributor.dtCode ? order.Outlet : 'None' }}
+                        {{ order.Outlet ? order.Outlet.Distributor.dtCode : 'N/A' }}
                     </td>
                     <td class="md-text-cell">
-                        {{ order.Outlet.Distributor.dtName ? order.Outlet : 'None' }}
+                        {{ order.Outlet ? order.Outlet.Distributor.dtName : 'N/A' }}
                     </td>
                     <td class="md-text-cell">
                         <!-- {{ order.Outlet.outletCode }} -->
