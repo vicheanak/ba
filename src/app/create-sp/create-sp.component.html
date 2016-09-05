@@ -30,7 +30,7 @@
             </div>
             <div class="flex-product-outlet">
                 <div class="product-container">
-                    <label class="input-label">Enter Products Amount</label>
+                    <label class="input-label">Enter Products Amount in Case</label>
                     <div class="product-list">
                         <md-input *ngFor="let product of products" [(ngModel)]="product.amount" [name]="'product' + product.id" [placeholder]="product.name"></md-input>
                     </div>
