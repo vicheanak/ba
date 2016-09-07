@@ -1,11 +1,11 @@
 //Place this at the top near your imports
 /// <reference path="../../typings/globals/underscore/index.d.ts" />
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { ROUTER_DIRECTIVES, Router } from '@angular/router';
 import * as moment from 'moment';
 import {AlertComponent} from 'ng2-bootstrap/ng2-bootstrap';
 import * as _ from 'underscore';
-import {MATERIAL_DIRECTIVES} from 'ng2-material';
+import {MATERIAL_DIRECTIVES, MATERIAL_PROVIDERS} from 'ng2-material';
 import {MD_SIDENAV_DIRECTIVES} from '@angular2-material/sidenav';
 import {NavService}   from './nav.service';
 import {Subscription} from 'rxjs/Subscription';
@@ -23,9 +23,13 @@ import {AuthenticationService} from './service/authentication';
       ROUTER_DIRECTIVES,
       MD_SIDENAV_DIRECTIVES,
       MdToolbar
+  ],
+  providers: [
+      MATERIAL_PROVIDERS
   ]
 })
 export class AppComponent {
+    @ViewChild('logoutDialog') logoutDialog;
     title = moment().format();
     googleUrl: string = 'https://www.google.com';
     title1: string = 'Button';
@@ -78,13 +82,19 @@ export class AppComponent {
         this.currentPage = label;
     }
 
-    logout(event){
+    showLogoutPopup(isSubmit){
          event.preventDefault();
-         this.authenticationService.logout().then(data => {
-             if (data == 'logout'){
-                  this.router.navigate(['/login']);
-             }
-         });
+         this.logoutDialog.show();
+    }
+
+    logout(isSubmit){
+        if (isSubmit){
+            this.authenticationService.logout().then(data => {
+                if (data == 'logout'){
+                    this.router.navigate(['/login']);
+                }
+            });
+        }
     }
 
 }

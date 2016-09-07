@@ -14,7 +14,7 @@
                 </md-list-item>
                 <md-list-item md-ink>
                     <i md-icon>power_settings_new</i>
-                    <a class="link" (click)="logout($event)" href="#">
+                    <a class="link" (click)="showLogoutPopup($event)" href="#">
                         Logout
                     </a>
                 </md-list-item>
@@ -25,3 +25,8 @@
         </md-content>
     </md-sidenav-layout>
 </div>
+<!-- Logout -->
+<md-dialog #logoutDialog (onClose)="logout($event)">
+    <md-dialog-title>Are you sure to log out?</md-dialog-title>
+    <md-dialog-actions ok="OK" cancel="CANCEL"></md-dialog-actions>
+</md-dialog>
