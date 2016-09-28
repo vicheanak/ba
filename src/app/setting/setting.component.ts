@@ -69,8 +69,19 @@ export class SettingComponent implements OnInit {
             this.auth.changePassword(passwords).then((res) => {
                 this.res = res;
                 if (!this.res.success){
-                    this.oldPasswordMessage = this.res.msg; 
+                    this.oldPasswordMessage = this.res.msg;
                 }
+                if (this.res['id']){
+                    this.modelOldPassword = '';
+                    this.modelNewPassword = '';
+                    this.messageType = 'success';
+                    this.message = 'Password is successfully updated.';
+                }
+                this.isFaded = true;
+
+                setTimeout(() => {
+                    this.isFaded = false;
+                }, 3000);
             });
         }
     }

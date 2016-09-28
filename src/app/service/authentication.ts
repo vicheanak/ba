@@ -10,7 +10,6 @@ export class AuthenticationService {
     data: any;
     host: String;
     @LocalStorage('unibook-web-userdata') public userdata:any;
-    @LocalStorage('HAS_LOGGED_IN') public HAS_LOGGED_IN:any;
 
     constructor(private http: Http, private env: Env) {
         this.data = null;
@@ -20,7 +19,6 @@ export class AuthenticationService {
     logout() {
         return new Promise(resolve => {
             this.userdata = '';
-            this.HAS_LOGGED_IN = '';
             resolve('logout');
         });
     }
@@ -32,21 +30,21 @@ export class AuthenticationService {
 
     // return a promise
     isAuth() {
-        return this.HAS_LOGGED_IN;
-        // return new Promise(resolve => {
-        //     let headers = new Headers({
-        //     'Content-Type': 'application/json',
-        //     'token': this.userdata.token
-        //     });
-        //     let options = new RequestOptions({ headers: headers });
-        //     let body = JSON.stringify({username: this.userdata.username});
-        //     this.http.post(this.host + '/islogin', body, options)
-        //         .subscribe(data => {
-        //             resolve(data.json());
-        //         }, error => {
-        //             resolve({err: 'Authentication Failed'});
-        //         });
-        // });
+
+        return new Promise(resolve => {
+            let headers = new Headers({
+            'Content-Type': 'application/json',
+            'token': this.userdata.token
+            });
+            let options = new RequestOptions({ headers: headers });
+            let body = JSON.stringify({username: this.userdata.username});
+            this.http.post(this.host + '/islogin', body, options)
+                .subscribe(data => {
+                    resolve(data.json());
+                }, error => {
+                    resolve({err: 'Authentication Failed'});
+                });
+        });
     }
 
     changePassword(passwords){
@@ -77,7 +75,6 @@ export class AuthenticationService {
                     this.data = data;
                     if (!this.data.err){
                         this.userdata = data.json();
-                        this.HAS_LOGGED_IN = true;
                     }
                     resolve(data.json());
                 }, error => {

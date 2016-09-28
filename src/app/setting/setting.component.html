@@ -27,9 +27,11 @@
             </div>
         </form>
     </md-card>
-    <alert *ngIf="messageType == 'danger'" [ngClass]="{'fadein': isFaded, 'fadeout': !isFaded}" class="alert-success-cus" type="danger" >
+
+    <alert *ngIf="messageType == 'success'" [ngClass]="{'fadein': isFaded, 'fadeout': !isFaded}" class="alert-success-cus" type="success" >
         {{message}}
     </alert>
+
     <alert *ngIf="messageType == 'success'" [ngClass]="{'fadein': isFaded, 'fadeout': !isFaded}" class="alert-success-cus" type="success" >
         {{message}}
     </alert>
