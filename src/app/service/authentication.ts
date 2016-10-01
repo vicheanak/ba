@@ -9,7 +9,7 @@ import {LocalStorage, SessionStorage} from "angular2-localstorage/WebStorage";
 export class AuthenticationService {
     data: any;
     host: String;
-    @LocalStorage('unibook-web-userdata') public userdata:any;
+    @LocalStorage('ba-unibook-web-userdata') public userdata:any;
 
     constructor(private http: Http, private env: Env) {
         this.data = null;
