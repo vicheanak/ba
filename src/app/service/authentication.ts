@@ -32,18 +32,23 @@ export class AuthenticationService {
     isAuth() {
 
         return new Promise(resolve => {
-            let headers = new Headers({
-            'Content-Type': 'application/json',
-            'token': this.userdata.token
-            });
-            let options = new RequestOptions({ headers: headers });
-            let body = JSON.stringify({username: this.userdata.username});
-            this.http.post(this.host + '/islogin', body, options)
-                .subscribe(data => {
-                    resolve(data.json());
-                }, error => {
-                    resolve({err: 'Authentication Failed'});
+            if (this.userdata && this.userdata.token && this.userdata.username){
+                let headers = new Headers({
+                'Content-Type': 'application/json',
+                'token': this.userdata ? this.userdata.token : ''
                 });
+                let options = new RequestOptions({ headers: headers });
+                let body = JSON.stringify({username: this.userdata ? this.userdata.username : ''});
+                this.http.post(this.host + '/islogin', body, options)
+                    .subscribe(data => {
+                        resolve(data.json());
+                    }, error => {
+                        resolve({err: 'Authentication Failed'});
+                    });
+            }
+            else{
+                resolve({err: 'Authentication Failed'});
+            }
         });
     }
 
