@@ -6,7 +6,7 @@
 
 # dependencies
 #/node_modules
-/bower_components
+# /bower_components
 
 # IDEs and editors
 /.idea
@@ -22,7 +22,7 @@
 /libpeerconnection.log
 npm-debug.log
 testem.log
-/typings
+#/typings
 
 # e2e
 /e2e/*.js
