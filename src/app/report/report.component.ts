@@ -128,7 +128,6 @@ export class ReportComponent implements OnInit {
         }
         this.orderService.getAll(query).then(orders => {
             this.orders = orders;
-            console.log('Results', this.orders);
             for (var o = 0; o < this.orders['results'].length; o ++){
                 this.orders['results'][o]['orderDate'] = moment.utc(this.orders['results'][o]['orderDate']).format('DD/MM/YYYY');
             }
@@ -174,7 +173,7 @@ export class ReportComponent implements OnInit {
              outletCode: 'Outlet Code',
              outletName: 'Outlet Name',
              productName: 'Product Name',
-             spName: 'SP Name',
+             spName: 'SF Name',
              freeQtyCs: 'Free Qty CS',
              freeQtyPc: 'Free Qty PC',
              saleQtyPc: 'Sale Qty PC',

@@ -41,7 +41,7 @@ export class AppComponent {
   {icon: 'shopping_basket', link: '/product', label: 'Product'},
   {icon: 'domain', link: '/distributor', label: 'Distributor'},
   {icon: 'store', link: '/outlet', label: 'Outlet'},
-  {icon: 'supervisor_account', link: '/sp', label: 'SP'},
+  {icon: 'supervisor_account', link: '/sf', label: 'SF'},
   {icon: 'visibility', link: '/viewer', label: 'Viewer'},
   {icon: 'settings', link: '/setting', label: 'Setting'},
   ];

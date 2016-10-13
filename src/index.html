@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>BA UNIBOOK</title>
+  <title>SF UNIBOOK</title>
   <base href="/">
 
   {{#unless environment.production}}
@@ -18,7 +18,7 @@
 </head>
 <body>
   <app-root>Loading...</app-root>
-  
+
     {{#each scripts.polyfills}}
     <script src="{{.}}"></script>
     {{/each}}
@@ -27,6 +27,6 @@
         System.import('main');
       }).catch(console.error.bind(console));
     </script>
-  
+
 </body>
 </html>
