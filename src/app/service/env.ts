@@ -6,7 +6,7 @@ export class Env {
     host: String;
     constructor() {
         this.host = 'https://baapi.unibookkh.com';
-        // this.host = 'http://localhost:3000';
+        // this.host = 'http://localhost:3001';
     }
     getHost(){
         return this.host;

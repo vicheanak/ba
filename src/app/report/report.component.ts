@@ -128,6 +128,7 @@ export class ReportComponent implements OnInit {
         }
         this.orderService.getAll(query).then(orders => {
             this.orders = orders;
+            console.log('Results', this.orders);
             for (var o = 0; o < this.orders['results'].length; o ++){
                 this.orders['results'][o]['orderDate'] = moment.utc(this.orders['results'][o]['orderDate']).format('DD/MM/YYYY');
             }
@@ -175,8 +176,9 @@ export class ReportComponent implements OnInit {
              productName: 'Product Name',
              spName: 'SP Name',
              freeQtyCs: 'Free Qty CS',
-             freeQtyPc: 'Free Qty Pc',
-             saleQty: 'Sale Qty',
+             freeQtyPc: 'Free Qty PC',
+             saleQtyPc: 'Sale Qty PC',
+             saleQtyCs: 'Sale Qty CS',
              salePrice: 'Sale Price',
              orderDate: 'Order Date'
              }];
@@ -190,8 +192,9 @@ export class ReportComponent implements OnInit {
                      spName: this.results[r].User.name + '',
                      freeQtyCs: Math.round((this.results[r].amount / this.results[r].Product.freeInQty) / this.results[r].Product.pieces * 100) / 100 + '',
                      freeQtyPc: Math.round((this.results[r].amount / this.results[r].Product.freeInQty) * 100) / 100 + '',
-                     saleQty: this.results[r].amount + '',
-                     salePrice: Math.round((this.results[r].amount * this.results[r].Product.price) * 100) / 100  + '',
+                     saleQtyPc: this.results[r].amount + '',
+                     saleQtyCs: Math.round((this.results[r].amount / this.results[r].Product.pieces) * 100) / 100 + '',
+                     salePrice: Math.round((this.results[r].amount * (this.results[r].Product.price / this.results[r].Product.pieces)) * 100) / 100  + '',
                      orderDate: moment.utc(this.results[r].orderDate).format('MM/DD/YYYY')
                  })
              }

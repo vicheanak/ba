@@ -78,7 +78,8 @@
                     <th class="md-text-cell">SP Name</th>
                     <th class="md-text-cell">Free Qty CS</th>
                     <th class="md-text-cell">Free Qty PC</th>
-                    <th class="md-text-cell">Sale Qty</th>
+                    <th class="md-text-cell">Sale Qty PC</th>
+                    <th class="md-text-cell">Sale Qty CS</th>
                     <th class="md-text-cell">Sale Price</th>
                     <th class="md-text-cell">Order Date</th>
                     <th></th>
@@ -114,7 +115,10 @@
                         {{ order.amount }}
                     </td>
                     <td class="md-text-cell">
-                        {{ order.amount * order.Product.price | round:true }}
+                        {{ order.amount / order.Product.pieces | round:true }}
+                    </td>
+                    <td class="md-text-cell">
+                        {{ order.amount * (order.Product.price / order.Product.pieces) | round:true }}
                     </td>
                     <td class="md-text-cell">
                         {{ order.orderDate }}
