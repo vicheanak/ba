@@ -51,7 +51,7 @@ export class CreateSpComponent implements OnInit {
         this.navService.changeNav(this.router.url);
         this.sub = this.route.params.subscribe(params => {
             if (params['id']){
-                this.spTitle = 'Edit SP';
+                this.spTitle = 'Edit SF';
                 this.saveState = 'edit';
                 let id = +params['id']; // (+) converts string 'id' to a number
                 this.spService.get(id).then((sp) => {
@@ -90,7 +90,7 @@ export class CreateSpComponent implements OnInit {
                 });
             }
             else{
-                this.spTitle = 'Create SP';
+                this.spTitle = 'Create SF';
                 this.saveState = 'create';
                 //Products
                 this.productService.getAll().then(products => {
@@ -151,7 +151,7 @@ export class CreateSpComponent implements OnInit {
                     }
                     else{
                         this.messageType = 'success';
-                        this.message = 'SP is successfully updated.';
+                        this.message = 'SF is successfully updated.';
                     }
                     this.isFaded = true;
                     this.isSaved = true;
@@ -170,7 +170,7 @@ export class CreateSpComponent implements OnInit {
                     else{
                         this.sp['id'] = spId;
                         this.messageType = 'success';
-                        this.message = 'SP is successfully created.';
+                        this.message = 'SF is successfully created.';
                         this.saveState = 'edit';
                     }
                     this.isSaved = true;

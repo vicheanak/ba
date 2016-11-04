@@ -7,17 +7,17 @@
     <md-card layout="column" class="md-inline-form">
         <form #f="ngForm" name="spForm" novalidate>
             <div class="flex-input">
-                <md-input #name="ngModel" required="true" dividerColor="{{nameMessage ? 'warn' : 'primary'}}" [(ngModel)]="sp.name" name="name" placeholder="Sp Name">
+                <md-input #name="ngModel" required="true" dividerColor="{{nameMessage ? 'warn' : 'primary'}}" [(ngModel)]="sp.name" name="name" placeholder="Sf Name">
                     <md-hint align="end" style="bottom: -0.3em; color: red">
                         <span>{{nameMessage}}</span>
                     </md-hint>
                 </md-input>
-                <md-input #username="ngModel" required="true" dividerColor="{{usernameMessage ? 'warn' : 'primary'}}" [(ngModel)]="sp.username" name="username" placeholder="Sp Username">
+                <md-input #username="ngModel" required="true" dividerColor="{{usernameMessage ? 'warn' : 'primary'}}" [(ngModel)]="sp.username" name="username" placeholder="Sf Username">
                     <md-hint align="end" style="bottom: -0.3em; color: red">
                         <span>{{usernameMessage}}</span>
                     </md-hint>
                 </md-input>
-                <md-input #password="ngModel" required="true" dividerColor="{{passwordMessage ? 'warn' : 'primary'}}" [(ngModel)]="sp.password" name="password" placeholder="Sp Password">
+                <md-input #password="ngModel" required="true" dividerColor="{{passwordMessage ? 'warn' : 'primary'}}" [(ngModel)]="sp.password" name="password" placeholder="Sf Password">
                     <md-hint align="end" style="bottom: -0.3em; color: red">
                         <span>{{passwordMessage}}</span>
                     </md-hint>
@@ -36,7 +36,7 @@
                     </div>
                 </div>
                 <div class="outlet-container">
-                    <label for="outlet" class="input-label">Select SP Outlets</label>
+                    <label for="outlet" class="input-label">Select SF Outlets</label>
                     <div class="outlet-list">
                         <md-checkbox *ngFor="let outlet of outlets" [(ngModel)]="outlet.checked" [name]="'outlet' + outlet.id" class="md-primary" [(checked)]="outlet.checked" aria-label="Star">
                             {{outlet.outletName}}
