@@ -29,12 +29,12 @@ export class SpComponent implements OnInit {
     }
 
     create(){
-        this.router.navigate(['/sp/create']);
+        this.router.navigate(['/sf/create']);
     }
 
 
     edit(sp){
-        this.router.navigate(['/sp/edit/', sp.id]);
+        this.router.navigate(['/sf/edit/', sp.id]);
     }
 
     ngOnInit() {
